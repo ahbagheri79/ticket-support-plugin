@@ -2,6 +2,13 @@
 ### افزودن پشتیبانی از طریق تیکت در وب سایت های وردپرس
 ### Adding ticket support to WordPress websites.
 <details>
+<summary id="English">تصاویر پلاگین - Plugin images</summary>
+[Manage](manage.png)
+[List](list.png)
+[Screenshot 1](Screenshot%202024-03-23%20174439.png)
+[Screenshot 2](Screenshot%202024-03-23%20173142.png)
+</details>
+<details>
 <summary id="فارسی">فارسی</summary>
 
 ## نصب و استفاده
