@@ -3,11 +3,14 @@
 ### Adding ticket support to WordPress websites.
 <details>
 <summary id="English">تصاویر پلاگین - Plugin images</summary>
-[Manage](manage.png)
-[List](list.png)
-[Screenshot 1](Screenshot%202024-03-23%20174439.png)
-[Screenshot 2](Screenshot%202024-03-23%20173142.png)
+
+<img src="manage.png" alt="Manage">
+<img src="list.png" alt="List">
+<img src="Screenshot%202024-03-23%20174439.png" alt="Screenshot 1">
+<img src="Screenshot%202024-03-23%20173142.png" alt="Screenshot 2">
+
 </details>
+
 <details>
 <summary id="فارسی">فارسی</summary>
 
