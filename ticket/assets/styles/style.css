@@ -1,0 +1,624 @@
+.rxsupport {
+    max-width: 1200px;
+    margin: auto;
+    margin-top: 28px;
+    background: rgb(245, 245, 250);
+    padding: 16px;
+    border-radius: 8px;
+}
+
+.message-container {
+    background-color: #f8d7da; /* Red background color */
+    padding: 10px; /* Padding around the messages */
+    margin-bottom: 20px; /* Add some space below the messages */
+    border: 1px solid #f5c6cb; /* Border for the messages */
+    border-radius: 5px; /* Rounded corners for the messages */
+}
+
+/* Style for the access denied message */
+.access-denied-message {
+    background-color: #dc3545; /* Green background color */
+    color: #FFF; /* Dark green text color */
+}
+
+/* Style for the URL incorrect message */
+.url-incorrect-message {
+    background-color: #ff8c00; /* Blue background color */
+    color: #FFF; /* Dark blue text color */
+}
+
+.right-section .msgbox {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    gap: 20px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.right-section .msgreplay {
+    flex: 1 1 100%;
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 16px;
+}
+
+.right-section .msgreplay .message {
+    background: #D3D;
+    padding: 12px;
+    border-radius: 8px;
+    width: fit-content;
+    /* text-align: right; */
+    max-width: 70%;
+    position: relative;
+}
+
+.right-section .msgreplay .message::before {
+    display: block;
+    clear: both;
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: -7px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 12px 15px 12px;
+    border-color: transparent transparent #D3D transparent;
+    -webkit-transform: rotate(-37deg);
+    -ms-transform: rotate(-37deg);
+    transform: rotate(-37deg);
+}
+
+.right-section .msgreplay .date {
+    color: #b9b9b9;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.right-section .msgreplay .date img {
+    width: 16px;
+}
+
+
+.right-section .msgsend {
+    flex: 1 1 100%;
+    text-align: right;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+    gap: 16px;
+}
+
+.right-section .msgsend .message {
+    background: #4b7bec;
+    padding: 12px;
+    border-radius: 8px;
+    width: fit-content;
+    max-width: 70%;
+    position: relative;
+}
+
+.right-section .msgsend .message::before {
+    display: block;
+    clear: both;
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    right: -7px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 12px 15px 12px;
+    border-color: transparent transparent #4b7bec transparent;
+    -webkit-transform: rotate(37deg);
+    -ms-transform: rotate(37deg);
+    transform: rotate(37deg);
+}
+
+.right-section .msgsend .date {
+    color: #b9b9b9;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.right-section .msgsend .date img {
+    width: 16px;
+}
+
+.right-section .comments-accordion {
+    margin-bottom: 20px;
+}
+
+.right-section .accordion-header {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.right-section .accordion-header .divider {
+    background: #e3eaf2;
+    flex: 1 1;
+    width: auto;
+    height: 1px;
+}
+
+.right-section .accordion-content {
+    display: none;
+    padding: 10px;
+}
+
+.rxsupport .badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.rxsupport .rpstatus {
+    padding: 6px 15px;
+    white-space: nowrap;
+    line-height: 28px;
+    border-radius: 14px 0 14px 14px;
+    display: inline-flex;
+    align-items: center;
+    background: #ffffff;
+    width: 100%;
+    font-size: 14px;
+}
+
+.rxsupport .badge-close {
+    border: 1px solid #dc3545; /* Red */
+    color: #dc3545;
+}
+
+.rxsupport .badge-answer {
+    border: 1px solid #28a745; /* Green */
+    color: #28a745;
+}
+
+.rxsupport .badge-user-answer {
+    border: 1px solid #007bff; /* Blue */
+    color: #007bff;
+}
+
+.rxsupport .badge-support-answer {
+    border: 1px solid #730096; /* Purple */
+    color: #730096;
+}
+
+.rxsupport .badge-top-level {
+    border: 1px solid #a99219; /* Yellow */
+    color: #a99219;
+}
+
+.rxsupport .badge-mid-level {
+    border: 1px solid #094209; /* Lime Green */
+    color: #094209;
+}
+
+.rxsupport .badge-down-level {
+    border: 1px solid #ff6347; /* Tomato */
+    color: #ff6347;
+}
+
+.rxsupport .badge-ended {
+    border: 1px solid #6c757d; /* Gray */
+    color: #6c757d;
+}
+
+.rxsupport .badge-departman {
+    color: rgb(47, 56, 61);
+    border: 1px solid rgba(108, 117, 125, 1);
+}
+
+.rxsupport .departman {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.rxsupport .badge-departman-item {
+    background: rgb(77, 85, 93);
+    color: white;
+}
+
+.section-top {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 16px;
+    font-family: IRANYekan;
+    flex: 1 1 100%;
+}
+
+.section-top a {
+    border-radius: 40px;
+    background: #730096;
+    padding: 8px;
+    color: white;
+    font-size: 14px;
+}
+
+.section-top .divider {
+    background: #D3D3D3;
+    height: 1px;
+    width: 100%;
+}
+
+.section-top .TitleSection {
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 100%;
+    text-align: right;
+    gap: 8px;
+    align-items: center;
+}
+
+.section-top .TitleSection .Text {
+    display: flex;
+    flex-direction: column;
+}
+
+.section-top .TitleSection .Text span {
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 32px;
+}
+
+.section-top .TitleSection .Text b {
+    font-size: 13px;
+    width: 100%;
+    color: #8d99a9;
+}
+
+.section-top .TitleSection svg {
+    width: 48px;
+    height: 48px;
+}
+
+.rxsupport #reply-title {
+    display: none;
+}
+
+.rxsupport .logged-in-as {
+    display: none;
+}
+
+.rxsupport .submit {
+    cursor: pointer;
+}
+
+.rxsupport .comment-form-comment textarea {
+    width: 100% !important;
+    border: 1px solid rgb(220, 220, 220) !important;
+    border-radius: 8px !important;
+    padding: 8px !important;
+    font-family: 'iransans' !important;
+    font-size: 14px !important;
+}
+
+.rxsupport .comment-form-comment label {
+    font-size: 14px;
+    color: #6c757d;
+}
+
+#loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
+    display: none; /* Initially hidden */
+    z-index: 9999; /* Ensure it's above other elements */
+}
+
+.loading-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 4px solid #f3f3f3; /* Light grey border */
+    border-top: 4px solid #3498db; /* Blue border on top for spinner effect */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite; /* Apply rotation animation */
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.rxsupport .rxsupport_ticket {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+.rxsupport .rxsupport_ticket .right-section {
+    width: 100%;
+}
+
+.rxsupport .rxsupport_ticket .left-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1;
+    margin-top: 28px;
+    border-top: 1px solid #D3D3D3;
+    padding-top: 28px;
+}
+
+.rxsupport .rxsupport_ticket .left-section .divider {
+    background: #D3D3D3;
+    height: 1px;
+    width: 80%;
+    margin: 0px auto;
+}
+
+@media (min-width: 768px) {
+    .rxsupport .rxsupport_ticket .right-section {
+        width: 77%;
+    }
+
+    .rxsupport .rxsupport_ticket .left-section {
+        margin-top: 0px;
+        border-top: 0px solid #D3D3D3;
+        padding-top: 0px;
+    }
+}
+
+#ticket-submission-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    font-family: IRANYekan;
+}
+
+#ticket-submission-form input,
+#ticket-submission-form textarea,
+#ticket-submission-form select {
+    width: 100%;
+    border: 1px solid rgb(220, 220, 220) !important;
+    border-radius: 8px !important;
+    font-family: IRANYekan !important;
+}
+
+#ticket-submission-form input {
+    padding: 0px 12px;
+    height: 36px;
+}
+
+#ticket-submission-form textarea {
+    padding: 12px;
+}
+
+#ticket-submission-form select {
+    padding: 0px 12px;
+    height: 36px;
+}
+
+#ticket-submission-form .items_form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+#ticket-submission-form .items_form .departman {
+    flex: 1;
+}
+
+#ticket-submission-form .items_form .priority {
+    flex: 1;
+}
+
+#ticket-submission-form input[type=submit] {
+    border-radius: 40px !important;
+    background:  #730096;
+    color: white;
+    padding: 8px 12px;
+    height: auto;
+    outline: unset !important;
+    border: none !important;
+    cursor: pointer
+}
+
+.rxsupport-parent-container {
+    font-size: 14px;
+}
+
+.rxsupport-parent-container .rxsupport-ticket-item {
+    border-right-color: #f0932b;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 6px;
+    margin-bottom: 10px;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px
+}
+
+/* Ticket Title */
+.rxsupport-parent-container .rxsupport-item-title {
+}
+
+/* Ticket Department */
+.rxsupport-parent-container .rxsupport-ticket-department {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+/* Department Icon */
+.rxsupport-parent-container .rxsupport-ticket-department img {
+    margin-right: 5px;
+}
+
+/* Ticket Status */
+.rxsupport-parent-container .rxsupport-item-status {
+    margin-bottom: 5px;
+}
+
+/* Ticket Date */
+.rxsupport-parent-container .rxsupport-item-date {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+    gap: 16px;
+    min-width: 20%;
+}
+
+/* Ticket Actions */
+.rxsupport-parent-container .rxsupport-item-actions {
+    text-align: center;
+}
+
+/* Button */
+.rxsupport-parent-container .rxsupport-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Button Hover */
+.rxsupport-parent-container .rxsupport-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Badge */
+.rxsupport-parent-container .rxsupport-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-right: 5px;
+}
+
+/* Badge Colors */
+.rxsupport-parent-container .rxsupport-badge-red {
+    background-color: #ff6347;
+    color: #fff;
+}
+
+.rxsupport-parent-container .rxsupport-badge-green {
+    background-color: #32cd32;
+    color: #fff;
+}
+
+.rxsupport-parent-container .rxsupport-badge-blue {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.rxsupport-parent-container .rxsupport-badge-purple {
+    background-color: #730096;
+    color: #FFF;
+}
+
+.rxsupport-parent-container .rxsupport-badge-yellow {
+    background-color: #ffd700;
+    color: #000;
+}
+
+/* Define badge styles */
+.rxsupport-parent-container .badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Style for 'Open' badge */
+.rxsupport-parent-container .badge-open {
+    background-color: #28a745;
+    color: #fff;
+}
+
+/* Style for 'Close' badge */
+.rxsupport-parent-container .badge-close {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+/* Style for 'Answer' badge */
+.rxsupport-parent-container .badge-answer {
+    background-color: #007bff;
+    color: #fff;
+}
+
+/* Style for 'Ended' badge */
+.rxsupport-parent-container .badge-ended {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+.rxsupport-parent-container .rxsupport-item-inner {
+    display: flex;
+    gap: 16px;
+    flex-direction: row;
+    min-width: 20%;
+}
+
+.sectionCenter {
+    min-width: 20%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+
+.rxsupport-parent-container .rxsupport-item-inner-author {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 8px;
+}
+
+@media (max-width: 850px) {
+    .rxsupport-parent-container .rxsupport-item-inner {
+        flex-direction: column;
+    }
+
+    .sectionCenter {
+        flex-direction: column;
+    }
+}
