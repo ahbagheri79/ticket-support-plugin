@@ -110,7 +110,7 @@ function rxsupport_page_content()
             <footer class="dashboard-footer">
                 <div class="footer-content">
                     <p>&copy; 2024 <?php echo esc_html($translations["reserved"]); ?> | <?php echo esc_html($translations['version']); ?></p>
-                    <p><?php echo esc_html($translations['email_support']); ?> <a href="mailto:bagheri.webdeveloper@gmail.com">bagheri.webdeveloper@gmail.com</a></p>
+                    <p><?php echo esc_html($translations['email_support']); ?> <a href="mailto:support@example.com">support@example.com</a></p>
                 </div>
             </footer>
         </div>
