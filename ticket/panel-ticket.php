@@ -50,7 +50,7 @@ function rxsupport_ticket_posts_shortcode()
                  style="border-right-color: #f0932b">
                 <div class="rxsupport-item-title">
                     <div class="rxsupport-item-inner">
-                        <a href="../my-ticket?id=<?php the_ID(); ?>" class="rxsupport-ticket-title"><?php the_title(); ?></a>
+                        <a href="<?php echo esc_url('../' . (get_option('rx_show_link_ticket') ?? '') . '?id=' . get_the_ID()); ?>" class="rxsupport-ticket-title"><?php the_title(); ?></a>
                         <div>
                             <div class="rxsupport-ticket-department">
                                 <span class="rxsupport-department rxsupport-department-6 rxsupport-badge rxsupport-badge-blue">دپارتمان: <?php echo wp_get_post_terms(get_the_ID(), 'support_department')[0]->name; ?></span>
@@ -93,7 +93,7 @@ function rxsupport_ticket_posts_shortcode()
                 </div>
                 <div class="rxsupport-item-actions">
                     <div class="rxsupport-item-inner">
-                        <a href="../my-ticket?id=<?php the_ID(); ?>"
+                        <a href="<?php echo esc_url('../' . (get_option('rx_show_link_ticket') ?? '') . '?id=' . get_the_ID()); ?>"
                            class="rxsupport-btn rxsupport-btn-secondary rxsupport-badge-purple rxsupport-btn-small">مشاهده تیکت</a>
                     </div>
                 </div>

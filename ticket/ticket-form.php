@@ -8,47 +8,47 @@ function ticket_submission_form_shortcode() {
     <div class="ShowResult" style="display: none;"></div> <!-- Placeholder for success/error messages -->
     <form id="ticket-submission-form" method="post">
         <?php wp_nonce_field( 'submit_ticket', 'ticket_submission_nonce' ); ?>
-       <div class="title">
-           <label for="ticket-title">عنوان تیکت:</label><br>
-           <input type="text" id="ticket-title" name="ticket_title" required><br>
-       </div>
+        <div class="title">
+            <label for="ticket-title">عنوان تیکت:</label><br>
+            <input type="text" id="ticket-title" name="ticket_title" required><br>
+        </div>
 
-       <div class="content">
-           <label for="ticket-content">متن سوال خود را وارد کنید:</label><br>
-           <textarea id="ticket-content" name="ticket_content" rows="4" required></textarea><br>
-       </div>
+        <div class="content">
+            <label for="ticket-content">متن سوال خود را وارد کنید:</label><br>
+            <textarea id="ticket-content" name="ticket_content" rows="4" required></textarea><br>
+        </div>
 
-       <div class="items_form">
-           <div class="departman">
-               <label for="support-department">دپارتمان مورد نظر را انتخاب کنید:</label><br>
-               <?php
-               // Render taxonomy selector for support_department
-               $departments = get_terms(array(
-                   'taxonomy' => 'support_department',
-                   'hide_empty' => false,
-               ));
+        <div class="items_form">
+            <div class="departman">
+                <label for="support-department">دپارتمان مورد نظر را انتخاب کنید:</label><br>
+                <?php
+                // Render taxonomy selector for support_department
+                $departments = get_terms(array(
+                    'taxonomy' => 'support_department',
+                    'hide_empty' => false,
+                ));
 
-               if (!empty($departments) && !is_wp_error($departments)) {
-                   echo '<select id="support-department" name="ticket_department">';
-                   echo '<option value="">انتخاب دپارتمان مرتبط</option>';
-                   foreach ($departments as $department) {
-                       echo '<option value="' . esc_attr($department->term_id) . '">' . esc_html($department->name) . '</option>';
-                   }
-                   echo '</select>';
-               } else {
-                   echo '<p>No departments found.</p>';
-               }
-               ?>
-           </div>
-           <div class="priority">
-               <label for="ticket-priority">میزان اهمیت تیکت:</label><br>
-               <select id="ticket-priority" name="ticket_priority">
-                   <option value="low">پایین</option>
-                   <option value="medium">متوسط</option>
-                   <option value="high">بالا</option> <!-- Corrected typo -->
-               </select>
-           </div>
-       </div>
+                if (!empty($departments) && !is_wp_error($departments)) {
+                    echo '<select id="support-department" name="ticket_department">';
+                    echo '<option value="">انتخاب دپارتمان مرتبط</option>';
+                    foreach ($departments as $department) {
+                        echo '<option value="' . esc_attr($department->term_id) . '">' . esc_html($department->name) . '</option>';
+                    }
+                    echo '</select>';
+                } else {
+                    echo '<p>No departments found.</p>';
+                }
+                ?>
+            </div>
+            <div class="priority">
+                <label for="ticket-priority">میزان اهمیت تیکت:</label><br>
+                <select id="ticket-priority" name="ticket_priority">
+                    <option value="low">پایین</option>
+                    <option value="medium">متوسط</option>
+                    <option value="high">بالا</option> <!-- Corrected typo -->
+                </select>
+            </div>
+        </div>
 
         <input type="submit" name="submit_ticket" value="ارسال پیام به پشتیبانی">
     </form>
@@ -64,8 +64,9 @@ session_start();
 
 // Function to handle ticket submission
 function handle_ticket_submission() {
+    $rx_send_link_ticket = get_option('rx_send_link_ticket') ?? "";
     // Check if the current URL matches the desired URL
-    if (isset($_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI'] === '/dashboard/send-ticket/') {
+    if (isset($_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI'] === $rx_send_link_ticket) {
         if ( isset( $_POST['submit_ticket'] ) && isset( $_POST['ticket_submission_nonce'] ) && wp_verify_nonce( $_POST['ticket_submission_nonce'], 'submit_ticket' ) ) {
             // Sanitize and validate form data
             $title = sanitize_text_field($_POST['ticket_title']);
@@ -122,7 +123,8 @@ function handle_ticket_submission() {
 
 // Conditionally render JavaScript only on 'send-ticket' page
 function render_ticket_submission_script() {
-    if ( is_page( 'send-ticket' ) ) {
+    $rx_send_link_ticket = get_option('rx_send_link_ticket') ?? "";
+    if ( is_page( $rx_send_link_ticket ) ) {
         ?>
         <script>
             document.addEventListener('DOMContentLoaded', function () {
@@ -130,13 +132,13 @@ function render_ticket_submission_script() {
                 if (resultDiv) {
                     resultDiv.style.display = 'block';
                     <?php if ( isset( $_SESSION['ticket_submission_result'] ) ) :
-                        $result = json_decode( $_SESSION['ticket_submission_result'], true ); ?>
-                        <?php if ( ! empty( $result['success'] ) ) : ?>
-                            resultDiv.innerHTML = '<div class="success notice"><p><?php echo esc_html( $result['success'] ); ?></p></div>';
-                        <?php elseif ( ! empty( $result['error'] ) ) : ?>
-                            resultDiv.innerHTML = '<div class="error notice"><p><?php echo esc_html( $result['error'] ); ?></p></div>';
-                        <?php endif; ?>
-                        <?php unset( $_SESSION['ticket_submission_result'] ); ?>
+                    $result = json_decode( $_SESSION['ticket_submission_result'], true ); ?>
+                    <?php if ( ! empty( $result['success'] ) ) : ?>
+                    resultDiv.innerHTML = '<div class="success notice"><p><?php echo esc_html( $result['success'] ); ?></p></div>';
+                    <?php elseif ( ! empty( $result['error'] ) ) : ?>
+                    resultDiv.innerHTML = '<div class="error notice"><p><?php echo esc_html( $result['error'] ); ?></p></div>';
+                    <?php endif; ?>
+                    <?php unset( $_SESSION['ticket_submission_result'] ); ?>
                     <?php endif; ?>
                 }
             });
