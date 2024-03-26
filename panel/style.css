@@ -1,0 +1,209 @@
+/* Styles without .rtl_container */
+#dashboard-container {
+    font-family: Arial, sans-serif;
+    display: grid;
+    grid-template-columns: 250px auto; /* Sidebar and content */
+    grid-template-rows: auto 1fr auto; /* Header, content, footer */
+    min-height: 100vh;
+}
+
+/* Header Styles */
+#dashboard-container .dashboard-header {
+    background-color: #3498db;
+    color: #ffffff;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    grid-column: 1 / span 2; /* Span across both columns */
+}
+
+#dashboard-container .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#dashboard-container .dashboard-title {
+    margin: 0;
+    font-size: 24px;
+}
+
+#dashboard-container .version {
+    margin: 0;
+    font-size: 14px;
+}
+
+#dashboard-container .social-links {
+    display: flex;
+}
+
+#dashboard-container .social-link {
+    color: #ffffff;
+    font-size: 20px;
+    margin-left: 15px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+#dashboard-container .social-link:hover {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Sidebar Styles */
+#dashboard-container .sidebar {
+    background-color: #5DADE2;
+    color: #ffffff;
+    overflow-y: auto;
+}
+
+#dashboard-container .sidebar-menu {
+    list-style-type: none;
+    padding: 0;
+}
+
+#dashboard-container .sidebar-menu li {
+    margin-bottom: 10px;
+}
+
+#dashboard-container .sidebar-menu a {
+    color: #ffffff;
+    text-decoration: none;
+    display: block;
+    padding: 15px;
+    transition: background-color 0.3s ease;
+}
+
+#dashboard-container .sidebar-menu li.active,
+#dashboard-container .sidebar-menu a:hover {
+    background-color: #2980B9;
+}
+
+/* Content Styles */
+#dashboard-container .content {
+    padding: 20px;
+}
+
+#dashboard-container .section {
+    display: none;
+}
+
+#dashboard-container .section.active {
+    display: block;
+}
+
+/* Footer Styles */
+#dashboard-container .dashboard-footer {
+    background-color: #85C1E9;
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Styles with .rtl_container */
+.rtl_container #dashboard-container {
+    direction: rtl;
+}
+
+.rtl_container #dashboard-container .header-content {
+    flex-direction: row-reverse;
+}
+
+.rtl_container #dashboard-container .social-link {
+    margin-left: 0;
+    margin-right: 15px;
+}
+
+.rtl_container #dashboard-container .sidebar {
+    grid-column: 1 / span 1;
+}
+
+.rtl_container #dashboard-container .content {
+    grid-column: 2 / span 1;
+}
+
+.rtl_container #dashboard-container .sidebar-menu a {
+    padding: 15px;
+}
+
+.rtl_container #dashboard-container .save-data-button {
+    float: left;
+}
+
+.rtl_container #dashboard-container .section.active {
+    text-align: right;
+}
+
+.rtl_container #dashboard-container .dashboard-title {
+    text-align: right;
+}
+
+.rtl_container #dashboard-container .version {
+    text-align: right;
+}
+
+.save-data-button {
+    background-color: transparent;
+    color: #1b3d53;
+    border: 2px solid #1b3d53;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.save-data-button:hover {
+    color: #5D6D7E;
+    border-color: #5D6D7E;
+}
+
+#dashboard-container .section form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* width: 35%; */
+    flex-wrap: nowrap;
+    gap: 8px;
+}
+
+#dashboard-container .section form .form_item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 16px;
+    width: 40%;
+
+}
+#dashboard-container .section form .form_item_buttton {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 16px;
+    width: 40%;
+}
+/* Style for labels */
+.form-container label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    width: 34%;
+}
+
+/* Style for input fields */
+.form-container input[type="text"] {
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+/* Style for submit button */
+.form-container .button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff; /* Adjust color as needed */
+    color: white;
+    cursor: pointer;
+}
+
+.form-container .button:hover {
+    background-color: #0056b3; /* Adjust color as needed */
+}

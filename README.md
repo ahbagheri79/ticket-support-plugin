@@ -1,4 +1,4 @@
-# Ticket Me Plugin (افزونه تیکت می) - Free V1
+# Rox Plugin (افزونه Rox) - Free V1
 ### افزودن پشتیبانی از طریق تیکت در وب سایت های وردپرس
 ### Adding ticket support to WordPress websites.
 <details>
