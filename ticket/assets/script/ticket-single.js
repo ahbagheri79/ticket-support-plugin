@@ -45,3 +45,11 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+function _togglePopUpTicket() {
+    var div = document.getElementById("_ticket_popup");
+    if (div.style.display === "none") {
+        div.style.display = "block";
+    } else {
+        div.style.display = "none";
+    }
+}

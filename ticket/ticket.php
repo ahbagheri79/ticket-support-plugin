@@ -1,34 +1,36 @@
 <?php
-
+require_once(plugin_dir_path(dirname(__FILE__)) . 'panel/LanguageLoader.php');
 // Register custom post type 'ticket'
 function create_custom_ticket_post_type()
 {
+    $translations = LanguageLoader::load_language_json();
+
     $labels = array(
-        'name' => _x('تیکت‌ها', 'نام عمومی نوع نوشته', 'rx_support_tickets'), // Adjusted text domain
-        'singular_name' => _x('تیکت', 'نام تکیه‌گاه نوع نوشته', 'rx_support_tickets'), // Adjusted text domain
-        'menu_name' => _x('تیکت‌ها', 'منوی مدیریت', 'rx_support_tickets'), // Adjusted text domain
-        'name_admin_bar' => _x('تیکت', 'افزودن جدید در نوار مدیریت', 'rx_support_tickets'), // Adjusted text domain
-        'add_new' => _x('افزودن تیکت جدید', 'تیکت', 'rx_support_tickets'), // Adjusted text domain
-        'add_new_item' => __('افزودن تیکت جدید', 'rx_support_tickets'), // Adjusted text domain
-        'new_item' => __('تیکت جدید', 'rx_support_tickets'), // Adjusted text domain
-        'edit_item' => __('ویرایش تیکت', 'rx_support_tickets'), // Adjusted text domain
-        'view_item' => __('مشاهده تیکت', 'rx_support_tickets'), // Adjusted text domain
-        'all_items' => __('همه تیکت‌ها', 'rx_support_tickets'), // Adjusted text domain
-        'search_items' => __('جستجوی تیکت‌ها', 'rx_support_tickets'), // Adjusted text domain
-        'parent_item_colon' => __('تیکت‌های والد:', 'rx_support_tickets'), // Adjusted text domain
-        'not_found' => __('تیکتی یافت نشد.', 'rx_support_tickets'), // Adjusted text domain
-        'not_found_in_trash' => __('تیکتی در سطل زباله یافت نشد.', 'rx_support_tickets'), // Adjusted text domain
+        'name' => _x($translations["ticket"]['name'], 'نام عمومی نوع نوشته', 'rx_support_tickets'),
+        'singular_name' => _x($translations["ticket"]['singular_name'], 'نام تکیه‌گاه نوع نوشته', 'rx_support_tickets'),
+        'menu_name' => _x($translations["ticket"]['menu_name'], 'منوی مدیریت', 'rx_support_tickets'),
+        'name_admin_bar' => _x($translations["ticket"]['name_admin_bar'], 'افزودن جدید در نوار مدیریت', 'rx_support_tickets'),
+        'add_new' => _x($translations["ticket"]['add_new'], 'تیکت', 'rx_support_tickets'),
+        'add_new_item' => __($translations["ticket"]['add_new_item'], 'rx_support_tickets'),
+        'new_item' => __($translations["ticket"]['new_item'], 'rx_support_tickets'),
+        'edit_item' => __($translations["ticket"]['edit_item'], 'rx_support_tickets'),
+        'view_item' => __($translations["ticket"]['view_item'], 'rx_support_tickets'),
+        'all_items' => __($translations["ticket"]['all_items'], 'rx_support_tickets'),
+        'search_items' => __($translations["ticket"]['search_items'], 'rx_support_tickets'),
+        'parent_item_colon' => __($translations["ticket"]['parent_item_colon'], 'rx_support_tickets'),
+        'not_found' => __($translations["ticket"]['not_found'], 'rx_support_tickets'),
+        'not_found_in_trash' => __($translations["ticket"]['not_found_in_trash'], 'rx_support_tickets'),
     );
 
     $args = array(
         'labels' => $labels,
-        'description' => __('توضیحات.', 'rx_support_tickets'), // Adjusted text domain
-        'public' => false, // پنهان از نمایش عمومی
-        'publicly_queryable' => true, // فعال کردن جستجوی عمومی
-        'show_ui' => true, // پنهان از رابط کاربری مدیریت
-        'show_in_menu' => true, // پنهان از منوی مدیریت
+        'description' => __($translations["ticket"]['description'], 'rx_support_tickets'),
+        'public' => false,
+        'publicly_queryable' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
         'query_var' => false,
-        'rewrite' => array('slug' => 'ticket'), // شناسه سفارشی
+        'rewrite' => array('slug' => 'ticket'),
         'capability_type' => 'post',
         'has_archive' => false,
         'hierarchical' => false,
@@ -39,11 +41,9 @@ function create_custom_ticket_post_type()
 
     register_post_type('ticket', $args);
 }
-
 add_action('init', 'create_custom_ticket_post_type');
 
 //NavBar Manager
-// افزودن تیکت به نوار مدیریت
 function add_ticket_to_admin_bar()
 {
     global $wp_admin_bar;
@@ -71,46 +71,48 @@ function add_ticket_to_admin_bar()
         ),
     ));
 }
-
 // اتصال تابع به نوار مدیریت وردپرس
 add_action('admin_bar_menu', 'add_ticket_to_admin_bar', 999);
 
 // Register Tax
-// ایجاد دسته‌بندی دپارتمان‌های پشتیبانی
 function create_support_department_category()
 {
+// Load translations from JSON
+    $translations = LanguageLoader::load_language_json();
+
+// Define labels
     $labels = array(
-        'name' => _x('دپارتمان‌های پشتیبانی', 'دسته‌بندی عمومی', 'rx_support_tickets'),
-        'singular_name' => _x('دپارتمان پشتیبانی', 'دسته‌بندی تکی', 'rx_support_tickets'),
-        'search_items' => __('جستجوی دپارتمان‌های پشتیبانی', 'rx_support_tickets'),
-        'popular_items' => __('دپارتمان‌های پرطرفدار', 'rx_support_tickets'),
-        'all_items' => __('همه دپارتمان‌های پشتیبانی', 'rx_support_tickets'),
-        'edit_item' => __('ویرایش دپارتمان پشتیبانی', 'rx_support_tickets'),
-        'update_item' => __('به‌روزرسانی دپارتمان پشتیبانی', 'rx_support_tickets'),
-        'add_new_item' => __('افزودن دپارتمان پشتیبانی جدید', 'rx_support_tickets'),
-        'new_item_name' => __('نام دپارتمان پشتیبانی جدید', 'rx_support_tickets'),
-        'separate_items_with_commas' => __('دپارتمان‌های پشتیبانی را با کاما جدا کنید', 'rx_support_tickets'),
-        'add_or_remove_items' => __('افزودن یا حذف دپارتمان‌های پشتیبانی', 'rx_support_tickets'),
-        'choose_from_most_used' => __('از پرکاربردترین‌ها انتخاب کنید', 'rx_support_tickets'),
-        'not_found' => __('دپارتمان پشتیبانی ای یافت نشد', 'rx_support_tickets'),
-        'menu_name' => __('دپارتمان‌های پشتیبانی', 'rx_support_tickets'),
+        'name' => _x($translations["department_support"]['name'], 'دسته‌بندی عمومی', 'rx_support_tickets'),
+        'singular_name' => _x($translations["department_support"]['singular_name'], 'دسته‌بندی تکی', 'rx_support_tickets'),
+        'search_items' => __($translations["department_support"]['search_items'], 'rx_support_tickets'),
+        'popular_items' => __($translations["department_support"]['popular_items'], 'rx_support_tickets'),
+        'all_items' => __($translations["department_support"]['all_items'], 'rx_support_tickets'),
+        'edit_item' => __($translations["department_support"]['edit_item'], 'rx_support_tickets'),
+        'update_item' => __($translations["department_support"]['update_item'], 'rx_support_tickets'),
+        'add_new_item' => __($translations["department_support"]['add_new_item'], 'rx_support_tickets'),
+        'new_item_name' => __($translations["department_support"]['new_item_name'], 'rx_support_tickets'),
+        'separate_items_with_commas' => __($translations["department_support"]['separate_items_with_commas'], 'rx_support_tickets'),
+        'add_or_remove_items' => __($translations["department_support"]['add_or_remove_items'], 'rx_support_tickets'),
+        'choose_from_most_used' => __($translations["department_support"]['choose_from_most_used'], 'rx_support_tickets'),
+        'not_found' => __($translations["department_support"]['not_found'], 'rx_support_tickets'),
+        'menu_name' => __($translations["department_support"]['menu_name'], 'rx_support_tickets'),
     );
 
+// Define arguments
     $args = array(
         'labels' => $labels,
-        'hierarchical' => false, // Set to false to make it behave like a regular category
+        'hierarchical' => false,
         'public' => true,
         'show_ui' => true,
         'show_admin_column' => true,
         'show_in_nav_menus' => true,
         'show_tagcloud' => true,
-        'meta_box_cb' => 'post_categories_meta_box', // Use the default category meta box UI
+        'meta_box_cb' => 'post_categories_meta_box',
     );
 
     // Register the support_department taxonomy
     register_taxonomy('support_department', 'ticket', $args);
 }
-
 add_action('init', 'create_support_department_category');
 
 
@@ -139,7 +141,6 @@ function add_support_ticket_role()
         )
     );
 }
-
 add_action('init', 'add_support_ticket_role');
 function remove_custom_roles()
 {
@@ -148,7 +149,6 @@ function remove_custom_roles()
     remove_role('fast_customer');
     remove_role('ticket_manager');
 }
-
 add_action('init', 'remove_custom_roles');
 function restrict_tickets_access()
 {
@@ -167,15 +167,15 @@ function restrict_tickets_access()
         }
     }
 }
-
 add_action('admin_menu', 'restrict_tickets_access');
 
 // Add metabox for ticket status
 function ticket_status_metabox()
 {
+    $translations = LanguageLoader::load_language_json();
     add_meta_box(
         'ticket_status_metabox', // Metabox ID
-        'تعیین وضعیت تیکت', // Metabox title
+        $translations['status']['title'], // Metabox title
         'ticket_status_metabox_callback', // Callback function to display metabox content
         'ticket', // Post type
         'side', // Context: 'side', 'normal', or 'advanced'
@@ -186,15 +186,16 @@ function ticket_status_metabox()
 // Callback function to display metabox content
 function ticket_status_metabox_callback($post)
 {
+    $translations = LanguageLoader::load_language_json();
     // Get current status
     $status = get_post_meta($post->ID, 'ticket_status', true);
 
     // Array of status options
     $status_options = array(
-        'open' => 'باز',
-        'close' => 'بسته',
-        'answer' => 'پاسخ داده شده',
-        'ended' => 'پایان یافته'
+        'open' => $translations['status']['open'],
+        'close' => $translations['status']['close'],
+        'answer' => $translations['status']['answer'],
+        'ended' => $translations['status']['ended']
     );
 
     // Add nonce field for security
@@ -202,7 +203,7 @@ function ticket_status_metabox_callback($post)
 
     // Display select box
     ?>
-    <label for="ticket_status">وضعیت:</label>
+    <label for="ticket_status"><?php echo $translations['status']['title']; ?>:</label>
     <select name="ticket_status" id="ticket_status">
         <?php foreach ($status_options as $key => $value) : ?>
             <option value="<?php echo esc_attr($key); ?>" <?php selected($status, $key); ?>><?php echo esc_html($value); ?></option>
@@ -235,10 +236,11 @@ function save_ticket_status($post_id)
     }
 
     // Save status
-    if (isset($_POST['ticket_status'])) {
-        update_post_meta($post_id, 'ticket_status', sanitize_text_field($_POST['ticket_status']));
+    if (isset($_POST['ticket_status_metabox'])) {
+        update_post_meta($post_id, 'ticket_status_metabox', sanitize_text_field($_POST['ticket_status_metabox']));
     }
 }
+
 
 // Hook functions to add and save metabox
 add_action('add_meta_boxes', 'ticket_status_metabox');
@@ -285,8 +287,9 @@ add_action('wp_head', 'add_noindex_follow_to_ticket_archive');
 function custom_comment_form($comment_form)
 {
     global $post;
+    $translations = LanguageLoader::load_language_json();
     if ($post && $post->post_type === 'ticket') {
-        $comment_form['comment_field'] = '<p class="comment-form-comment"><label for="comment">پاسخ خود را بنویسید<span class="required">*</span></label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true" required=""></textarea></p>';
+        $comment_form['comment_field'] = '<p class="comment-form-comment"><label for="comment">'.$translations["reply"].'<span class="required">*</span></label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true" required=""></textarea></p>';
     }
     return $comment_form;
 }
@@ -295,8 +298,9 @@ add_filter('comment_form_defaults', 'custom_comment_form');
 function custom_comment_submit_button_text($submit_button_text)
 {
     global $post;
+    $translations = LanguageLoader::load_language_json();
     if ($post && $post->post_type === 'ticket') {
-        $submit_button_text = '<input name="submit" type="submit" id="submit" class="submit" value="ارسال پاسخ">';
+        $submit_button_text = '<input name="submit" type="submit" id="submit" class="submit" value="'.$translations["reply_n"].'">';
     }
     return $submit_button_text;
 }
@@ -305,9 +309,10 @@ add_filter('comment_form_submit_button', 'custom_comment_submit_button_text');
 // Add the ticket priority metabox
 function add_ticket_priority_metabox()
 {
+    $translations = LanguageLoader::load_language_json();
     add_meta_box(
         'ticket_priority_metabox', // Metabox ID
-        'میزان اهمیت', // Metabox title
+        $translations["priority"], // Metabox title
         'render_ticket_priority_metabox', // Callback function to render the metabox content
         'ticket', // Post type to display the metabox
         'side', // Context (where to display the metabox)
@@ -322,14 +327,14 @@ function render_ticket_priority_metabox($post)
 {
     // Retrieve the current priority value
     $priority = get_post_meta($post->ID, 'ticket_priority', true);
-
+    $translations = LanguageLoader::load_language_json();
     // Output the HTML for the metabox
     ?>
-    <label for="ticket_priority">میزان اهمیت:</label>
+    <label for="ticket_priority"><?php echo $translations["priority_label"]["ticket_priority_label"];?></label>
     <select name="ticket_priority" id="ticket_priority">
-        <option value="high" <?php selected($priority, 'high'); ?>>بالا</option>
-        <option value="medium" <?php selected($priority, 'medium'); ?>>متوسط</option>
-        <option value="low" <?php selected($priority, 'low'); ?>>پایین</option>
+        <option value="high"><?php echo $translations["priority_label"]["ticket_priority_high"];?></option>
+        <option value="medium"><?php echo $translations["priority_label"]["ticket_priority_medium"];?></option>
+        <option value="low"><?php echo $translations["priority_label"]["ticket_priority_low"];?></option>
     </select>
     <?php
 }
@@ -342,8 +347,8 @@ function save_ticket_priority($post_id)
         update_post_meta($post_id, 'ticket_priority', $priority);
     }
 }
-
 add_action('save_post_ticket', 'save_ticket_priority');
+
 // Exclude comments of a specific post type from comment list
 function exclude_comments_by_post_type($comment_query)
 {
@@ -359,33 +364,34 @@ function exclude_comments_by_post_type($comment_query)
         $comment_query->query_vars['post_type'] = $post_types;
     }
 }
-
 add_action('pre_get_comments', 'exclude_comments_by_post_type');
 
 // Add a custom meta box to the comments panel
 function custom_comments_labels($translated_text, $text, $domain)
 {
+    $translations = LanguageLoader::load_language_json();
     if ($domain === 'default') {
         switch ($text) {
             case 'Comments':
-                $translated_text = __('وضعیت تبادل تیکت ها', 'text-domain');
+                $translated_text = __($translations["Status_Tabadol"], 'text-domain');
                 break;
             case 'Comments awaiting moderation':
-                $translated_text = __('مدیریت تیکت ها', 'text-domain');
+                $translated_text = __($translations["ticket_managers"], 'text-domain');
                 break;
             // Add more cases for other comment-related strings as needed
         }
     }
     return $translated_text;
 }
-
 add_filter('gettext', 'custom_comments_labels', 10, 3);
+
 function custom_comment_button_label($translated_text, $text, $domain)
 {
+    $translations = LanguageLoader::load_language_json();
     // Check if we are on the post edit screen and the text matches the comment button label
     if (is_admin() && 'Reply' === $text && 'default' === $domain) {
         // Customize the button label
-        $translated_text = 'تایید پاسخ';
+        $translated_text = $translations["accept_reply"];
     }
     return $translated_text;
 }
@@ -419,6 +425,35 @@ function add_ticket_caps_to_subscriber_role() {
     $subscriber_role->add_cap( 'read' ); // Ensure subscribers can read tickets
 }
 add_action( 'init', 'add_ticket_caps_to_subscriber_role' );
+// Shortcode callback function
+function ticket_page_shortcode() {
+    ob_start(); // Start output buffering
+
+    // Include the template file content
+    include_once(plugin_dir_path(__FILE__) . 'templates/page-ticket.php');
+
+    $html_output = ob_get_clean(); // Get the buffered output and clean the buffer
+
+    return $html_output; // Return the HTML output
+}
+
+// Register shortcode
+add_shortcode('show_ticket_content', 'ticket_page_shortcode');
 
 
+add_action('comment_post', 'update_ticket_status_metabox', 10, 2);
 
+function update_ticket_status_metabox($comment_ID, $comment_approved)
+{
+    // Check if the comment is approved
+    if ($comment_approved === 1) {
+        $comment = get_comment($comment_ID);
+        $comment_post_type = get_post_type($comment->comment_post_ID);
+
+        // Check if the comment is added to a ticket post type
+        if ($comment_post_type === 'ticket') {
+            // Update the ticket_status_metabox meta value to 'open'
+            update_post_meta($comment->comment_post_ID, 'ticket_status_metabox', 'open');
+        }
+    }
+}

@@ -2,7 +2,6 @@
 /*
 Template Name: Ticket Page Template
 */
-get_header();
 $plugin_dir = plugin_dir_url(dirname(__FILE__));
 wp_enqueue_style('rxsupport-style', plugin_dir_url(dirname(__FILE__)) . 'assets/styles/style.css', array(), '1.0', 'all');
 wp_enqueue_script('accordion-script', plugin_dir_url(dirname(__FILE__)) . 'assets/script/ticket-single.js', array('jquery'), '1.0', true);
@@ -251,6 +250,3 @@ $post_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
     }
     ?>
 </div>
-<?php
-get_footer();
-?>

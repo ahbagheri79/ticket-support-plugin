@@ -622,3 +622,25 @@
         flex-direction: column;
     }
 }
+._error {
+    background-color: #ffcccc; /* Light red background */
+    color: #ff0000; /* Red text color */
+    padding: 10px; /* Padding */
+    border-radius: 5px; /* Border radius */
+    border: 1px solid #ff0000; /* Red border */
+}
+
+._success {
+    background-color: #ccffcc; /* Light green background */
+    color: #006400; /* Dark green text color */
+    padding: 10px; /* Padding */
+    border-radius: 5px; /* Border radius */
+    border: 1px solid #006400; /* Dark green border */
+}
+
+._popup_div {
+    position: fixed;
+    top: 80px;
+    right: 40px;
+    width: 275px;
+}
